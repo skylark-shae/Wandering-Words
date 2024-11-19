@@ -1,6 +1,5 @@
-# Wandering-Words
 <a id="title"></a>
-# Employee Tracker
+# Wandering Words
 
 <a id="description"></a>
 ## Description
