@@ -9,7 +9,7 @@
 - [Installation](#installation)
 - [Usage](#usage)
 - [Tests](#tests)
-- [Questions](#questions)
+- [Contact the Developers](#contact)
 - [Future Development](#development)
 - [Contributing](#contributing)
 - [Authors and Acknowledgment](#acknowledgment)
@@ -19,6 +19,7 @@
 <a id="description"></a>
 ## Description
 An intelligent blog platform leveraging AI to assist users in creating and editing blog posts. This project integrates a grammar-checking API and OpenAI's content generation capabilities to enhance the blogging experience.
+
 
 **Features**
 Grammar Checking: Ensures that blog posts are grammatically correct and polished.
@@ -148,8 +149,8 @@ FILL
 ## Tests
 FILL
 
-<a id="questions"></a>
-## Questions
+<a id="contact"></a>
+## Contact the Developers
 If you have any questions about the contents please feel free to reach out to our team at:
 
 Michael Kelly
@@ -170,7 +171,8 @@ Ricardo Shade
 
 <a id="development"></a>
 ## Future Development
-FILL
+
+[Google Doc](https://docs.google.com/document/d/1ol6ijrawWwCEvmWFz3Pm9QBDXgyqPqCGQ61TIVFbjxM/edit?tab=t.0)
 
 <a id="contributing"></a>
 ## Contributing
