@@ -1,6 +1,21 @@
 <a id="title"></a>
 # Wandering Words
 
+## Table of Contents
+- [Title](#title)
+- [Description](#description)
+- [Badges and Resources Used](#badges)
+- [Visuals](#visuals)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Tests](#tests)
+- [Questions](#questions)
+- [Future Development](#development)
+- [Contributing](#contributing)
+- [Authors and Acknowledgment](#acknowledgment)
+- [License](#license)
+- [Project Status](#status)
+
 <a id="description"></a>
 ## Description
 An intelligent blog platform leveraging AI to assist users in creating and editing blog posts. This project integrates a grammar-checking API and OpenAI's content generation capabilities to enhance the blogging experience.
@@ -65,24 +80,8 @@ User-Friendly Interface: Built with React for a seamless user experience.
 6. **Search and Insights (Future Enhancements):**
     - SEO Recommendations:
     - Get suggestions on optimizing content for search engines.
+    - Content Analytics: Insights into readability scores, estimated engagement, and word count.
 
-Content Analytics:
-Insights into readability scores, estimated engagement, and word count.
-
-## Table of Contents
-- [Title](#title)
-- [Description](#description)
-- [Badges and Resources Used](#badges)
-- [Visuals](#visuals)
-- [Installation](#installation)
-- [Usage](#usage)
-- [Tests](#tests)
-- [Questions](#questions)
-- [Future Development](#development)
-- [Contributing](#contributing)
-- [Authors and Acknowledgment](#acknowledgment)
-- [License](#license)
-- [Project Status](#status)
 
 <a id="badges"></a>
 ## Badges, API's, and Resources Used
@@ -93,6 +92,11 @@ Insights into readability scores, estimated engagement, and word count.
 ### Built With
 [![React](https://img.shields.io/badge/Frontend-React-blue.svg)](https://reactjs.org/)
 [![TypeScript](https://img.shields.io/badge/Language-TypeScript-007ACC.svg)](https://www.typescriptlang.org/)
+[![HTML](https://img.shields.io/badge/Markup-HTML5-orange.svg)](https://developer.mozilla.org/en-US/docs/Web/HTML)
+[![CSS](https://img.shields.io/badge/Styles-CSS3-blue.svg)](https://developer.mozilla.org/en-US/docs/Web/CSS)
+[![JavaScript](https://img.shields.io/badge/Language-JavaScript-yellow.svg)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+[![Node.js](https://img.shields.io/badge/Runtime-Node.js-43853d.svg)](https://nodejs.org/)
+[![Express.js](https://img.shields.io/badge/Framework-Express-000000.svg)](https://expressjs.com/)
 
 ### API Integrations
 [![OpenAI](https://img.shields.io/badge/AI-OpenAI-00A68A.svg)](https://openai.com/)
@@ -101,19 +105,40 @@ Insights into readability scores, estimated engagement, and word count.
 ### Development
 [![Node.js](https://img.shields.io/badge/Runtime-Node.js-43853d.svg)](https://nodejs.org/)
 [![npm](https://img.shields.io/badge/Package%20Manager-npm-CB3837.svg)](https://www.npmjs.com/)
+[![Visual Studio Code](https://img.shields.io/badge/Editor-VS%20Code-blue.svg)](https://code.visualstudio.com/)
+[![Webpack](https://img.shields.io/badge/Bundler-Webpack-8DD6F9.svg)](https://webpack.js.org/)
+[![Babel](https://img.shields.io/badge/Compiler-Babel-F9DC3E.svg)](https://babeljs.io/)
+[![ESLint](https://img.shields.io/badge/Linter-ESLint-4B32C3.svg)](https://eslint.org/)
 
 
 <a id="installation"></a>
 ## Installation
-FILL
+You will need your own API keys in order for the site to function. The API's used are listed above.
 
-1. **Clone the Repository**: Use the following command to clone the repository to your local machine.
-   ```
-   ```
+1. **Clone the Repository** Clone repo from github.
+2. **Install Dependancies** Once cloned install all dependancies.
+3. **Set Up Environment Variables:** To use the OpenAI and Grammar APIs, you'll need to set up environment variables to store your API keys securely.
+    - In the project root directory, create a .env file (if it doesn’t already exist).
+    - Add the following to the .env file:
+    ```
+    REACT_APP_OPENAI_API_KEY=your_openai_api_key
+    REACT_APP_GRAMMAR_API_KEY=your_grammar_api_key
+    ```
+    -Replace your_openai_api_key and your_grammar_api_key with your actual API keys.
+
+4. **Run the Development Server:** Once everything is set up, you can start the development server to view the project locally:
+    ````
+    npm run test/buid/start
+    ````
+This will launch the application at http://localhost:3000 in your browser.
+
+5. **Test the Application:** Ensure that your OpenAI and Grammar APIs are integrated correctly by testing the content generation and grammar checking functionalities.
+    - Content Creation: Enter a prompt and check if the AI generates content as expected.
+    - Grammar Checking: Paste a blog draft and check if the grammar suggestions appear.
 
 <a id="usage"></a>
 ## Usage
-FILL
+Website it deployed at [FILL LINK]
 
 <a id="Visuals"></a>
 ## Visuals
@@ -125,9 +150,23 @@ FILL
 
 <a id="questions"></a>
 ## Questions
-If you have any questions about the contents please feel free to reach out!
-- Email: [skylarkline16@gmail.com](mailto:skylarkline16@gmail.com)
-- GitHub: [skylark-shae](https://github.com/skylark-shae)
+If you have any questions about the contents please feel free to reach out to our team at:
+
+Michael Kelly
+ - Email: [mgkelly18@gmail.com](mailto:mgkelly18@gmail.com)
+ - GitHub: [samvs-tech](https://github.com/samvs-tech)
+
+Ty Jensen 
+ - Email: [tyannejensen@gmail.com](mailto:tyannejensen@gmail.com)
+ - GitHub: [tyannejensen](https://github.com/tyannejensen)
+
+Skylar Kline
+ - Email: [skylarkline16@gmail.com](mailto:skylarkline16@gmail.com)
+ - GitHub: [skylark-shae](https://github.com/skylark-shae)
+
+Ricardo Shade
+ - Email: [richi.shade@gmail.com](mailto:richi.shade@gmail.com)
+ - GitHub: [ricardoshade](https://github.com/ricardoshade)
 
 <a id="development"></a>
 ## Future Development
