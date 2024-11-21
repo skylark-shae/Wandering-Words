@@ -1,9 +1,9 @@
 import { useState, type FormEvent, type ChangeEvent } from 'react';
-import { useParams } from 'react-router-dom';
-import { updateFeedback } from '../api/feedbackAPI';
+// import { useParams } from 'react-router-dom';
+// import { updateFeedback } from '../api/feedbackAPI';
 
 const UpdateFeedbackForm = () => {
-  const { id } = useParams();
+  // const { id } = useParams();
 
   const [feedbackData, setFeedbackData] = useState({
     email: '',
@@ -23,7 +23,7 @@ const UpdateFeedbackForm = () => {
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     try {
-      const data = await updateFeedback(id, feedbackData);
+      // const data = await updateFeedback(id, feedbackData);
 
       window.location.reload();
     } catch (err) {

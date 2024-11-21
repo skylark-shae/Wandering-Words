@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { retrieveTip, deleteTip } from "../api/tipAPI";
+import { retrieveTip } from "../api/tipAPI";
 import UpdateTipForm from "../components/UpdateTipForm";
 
 const SingleTip = () => {
@@ -27,11 +27,11 @@ const SingleTip = () => {
         setTip(data);
     }
 
-    const hadleDeleteTip = async (id: string | undefined) => {
-        const data = deleteTip(id)
+    // const hadleDeleteTip = async (id: string | undefined) => {
+        // const data = deleteTip(id)
 
-        window.location.assign('/')
-    }
+        // window.location.assign('/')
+    // }
 
     return (
         <>
@@ -40,7 +40,7 @@ const SingleTip = () => {
           <h4 className="card-header bg-primary text-light p-2 m-0">{tip.username}</h4>
           <div className="card-body bg-light p-2">
             <p>{tip.tip}</p>
-            <a onClick={() => hadleDeleteTip(tip.id)}>Delete this tip</a>
+            {/* <a onClick={() => hadleDeleteTip(tip.id)}>Delete this tip</a> */}
           </div>
         </div>
         </>

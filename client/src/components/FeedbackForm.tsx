@@ -1,6 +1,6 @@
 import { useState, type FormEvent, type ChangeEvent } from 'react';
 
-import { addFeedback } from '../api/feedbackAPI';
+// import { addFeedback } from '../api/feedbackAPI';
 
 const FeedbackForm = () => {
   const [feedbackData, setFeedbackData] = useState({
@@ -21,7 +21,7 @@ const FeedbackForm = () => {
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     try {
-      const data = await addFeedback(feedbackData);
+      // const data = await addFeedback(feedbackData);
 
       window.location.reload();
     } catch (err) {

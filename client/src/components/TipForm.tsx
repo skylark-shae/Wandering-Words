@@ -1,6 +1,6 @@
 import { useState, type FormEvent, type ChangeEvent } from 'react';
 
-import { addTip } from '../api/tipAPI';
+// import { addTip } from '../api/tipAPI';
 
 const TipForm = () => {
   const [tipData, setTipData] = useState({
@@ -21,7 +21,7 @@ const TipForm = () => {
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     try {
-      const data = await addTip(tipData);
+      // const data = await addTip(tipData);
 
       window.location.reload();
     } catch (err) {
