@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { retrieveFeedback, deleteFeedback } from "../api/feedbackAPI";
+import { retrieveFeedback } from "../api/feedbackAPI";
 import UpdateFeedbackForm from "../components/UpdateFeedbackForm.tsx";
 
 const SingleFeedback = () => {
@@ -27,11 +27,11 @@ const SingleFeedback = () => {
         setFeedback(data);
     }
 
-    const hadleDeleteFeedback = async (id: string | undefined) => {
-        const data = deleteFeedback(id)
+    // const hadleDeleteFeedback = async (id: string | undefined) => {
+        // const data = deleteFeedback(id)
 
-        window.location.assign('/')
-    }
+    //     window.location.assign('/')
+    // }
 
     return (
         <>
@@ -40,7 +40,7 @@ const SingleFeedback = () => {
           <h4 className="card-header bg-primary text-light p-2 m-0">{feedback.email}</h4>
           <div className="card-body bg-light p-2">
             <p>{feedback.feedback}</p>
-            <a onClick={() => hadleDeleteFeedback(feedback.id)}>Delete this feedback</a>
+            {/* <a onClick={() => hadleDeleteFeedback(feedback.id)}>Delete this feedback</a> */}
           </div>
         </div>
         </>

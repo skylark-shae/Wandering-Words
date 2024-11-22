@@ -1,9 +1,9 @@
 import { useState, type FormEvent, type ChangeEvent } from 'react';
-import { useParams } from 'react-router-dom';
-import { updateTip } from '../api/tipAPI';
+// import { useParams } from 'react-router-dom';
+// import { updateTip } from '../api/tipAPI';
 
 const UpdateTipForm = () => {
-  const { id } = useParams();
+  // const { id } = useParams();
 
   const [tipData, setTipData] = useState({
     username: '',
@@ -23,7 +23,7 @@ const UpdateTipForm = () => {
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     try {
-      const data = await updateTip(id, tipData);
+      // const data = await updateTip(id, tipData);
 
       window.location.reload();
     } catch (err) {

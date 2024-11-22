@@ -8,6 +8,7 @@ import Home from './pages/Home.tsx';
 import Feedback from './pages/Feedback.tsx';
 import SingleTip from './pages/SingleTip.tsx';
 import SingleFeedback from './pages/SingleFeedback.tsx';
+import Login from './components/login.tsx';
 
 const router = createBrowserRouter([
   {
@@ -18,6 +19,10 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <Home />,
+      }, 
+      {
+        path: '/log-in',
+        element: <Login/>
       },
       {
         path: '/feedback',
