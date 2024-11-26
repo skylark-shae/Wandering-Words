@@ -1,16 +1,38 @@
-import { Outlet } from 'react-router-dom';
-
-import Navbar from './components/Navbar/Navbar';
+import {
+  BrowserRouter,
+  Navigate,
+  Outlet,
+  Route,
+  Routes,
+} from "react-router-dom";
+import "./App.css";
+import Login from "./components/login";
+import Register from "./components/Register";
+import Home from "./components/Home";
+import { getActiveUser } from "./LocalStorage";
+import Navbar from "./components/Navbar/Navbar";
 
 function App() {
   return (
-    <div>
+    <>
       <Navbar />
-      <main className='container container-fluid mt-5'>
-        <Outlet />
-      </main>
-    </div>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/" element={<PrivateRoute />} />ç
+          <Route path="/" element={<Home />} />
+        </Routes>
+      </BrowserRouter>
+    </>
   );
 }
+
+const PrivateRoute = () => {
+  const activeUser = getActiveUser();
+  if (activeUser === null) return <Navigate to={"/login"} />;
+
+  return <Outlet />;
+};
 
 export default App;

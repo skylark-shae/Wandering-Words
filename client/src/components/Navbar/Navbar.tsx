@@ -1,46 +1,101 @@
-import React from 'react';
-import './Navbar.css;
-import {BiHome, BiUser, BiCodeCurly, BiSolidBook, BiMessageSquareDetail} from 'react-icons/bi';
-import {RiServiceLine} from 'react-icons/ri';
-import {Link} from 'react-scroll';
+import "./Navbar.css";
+import {
+  BiHome,
+  BiUser,
+  BiCodeCurly,
+  BiSolidBook,
+  BiMessageSquareDetail,
+} from "react-icons/bi";
+import { RiServiceLine } from "react-icons/ri";
+import { Link } from "react-scroll";
 // import { Link } from 'react-router-dom'; // From original code.
 
 function Navbar() {
   return (
-    <nav className='navbar'>
-      <div className='navbar__container'>
-        <Link to='home' smooth={true} duration={500} spy={true} exact='true' offset={-80} className='navbar__logo'>
-          <BiHome className='navbar__icon' />
-          Home
-        </Link>
-        <ul className='navbar__menu'>
-          <li className='navbar__item'>
-            <Link to='about' smooth={true} duration={500} spy={true} exact='true' offset={-80} className='navbar__links'>
-              <BiUser className='navbar__icon' />
+    <nav className="navbar">
+      <div className="navbar__container">
+        <ul className="navbar__menu">
+          <li>
+            <Link
+              to="home"
+              smooth={true}
+              duration={500}
+              spy={true}
+              exact="true"
+              offset={-80}
+              className="navbar__logo"
+            >
+              <BiHome className="navbar__icon" />
+              Home
+            </Link>
+          </li>
+          <li className="navbar__item">
+            <Link
+              to="about"
+              smooth={true}
+              duration={500}
+              spy={true}
+              exact="true"
+              offset={-80}
+              className="navbar__links"
+            >
+              <BiUser className="navbar__icon" />
               About
             </Link>
           </li>
-          <li className='navbar__item'>
-            <Link to='services' smooth={true} duration={500} spy={true} exact='true' offset={-80} className='navbar__links'>
-              <RiServiceLine className='navbar__icon' />
+          <li className="navbar__item">
+            <Link
+              to="services"
+              smooth={true}
+              duration={500}
+              spy={true}
+              exact="true"
+              offset={-80}
+              className="navbar__links"
+            >
+              <RiServiceLine className="navbar__icon" />
               Services
             </Link>
           </li>
-          <li className='navbar__item'>
-            <Link to='skills' smooth={true} duration={500} spy={true} exact='true' offset={-80} className='navbar__links'>
-              <BiCodeCurly className='navbar__icon' />
+          <li className="navbar__item">
+            <Link
+              to="skills"
+              smooth={true}
+              duration={500}
+              spy={true}
+              exact="true"
+              offset={-80}
+              className="navbar__links"
+            >
+              <BiCodeCurly className="navbar__icon" />
               Skills
             </Link>
           </li>
-          <li className='navbar__item'>
-            <Link to='projects' smooth={true} duration={500} spy={true} exact='true' offset={-80} className='navbar__links'>
-              <BiSolidBook className='navbar__icon' />
+          <li className="navbar__item">
+            <Link
+              to="projects"
+              smooth={true}
+              duration={500}
+              spy={true}
+              exact="true"
+              offset={-80}
+              className="navbar__links"
+            >
+              <BiSolidBook className="navbar__icon" />
               Projects
             </Link>
           </li>
-          <li className='navbar__item'>
-            <Link to='contact' smooth={true} duration={500} spy={true} exact='true' offset={-80} className='navbar__links'>
-              <BiMessageSquareDetail className='navbar__icon' />
+          <li className="navbar__item">
+            <Link
+              to="contact"
+              smooth={true}
+              duration={500}
+              spy={true}
+              exact="true"
+              offset={-80}
+              className="navbar__links"
+            >
+              <BiMessageSquareDetail className="navbar__icon" />
               Contact
             </Link>
           </li>
