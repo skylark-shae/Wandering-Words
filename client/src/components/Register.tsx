@@ -102,7 +102,7 @@ const Register = () => {
           onChange={handleInputChange}
         />
 
-        <button>Sign Up</button>
+        <button className="register-button">Sign Up</button>
         <div className="social">
           {message && <p>{message}</p>}
           <Link to="/login">Login</Link>

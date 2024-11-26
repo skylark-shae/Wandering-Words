@@ -41,7 +41,7 @@ const Login = () => {
         <div className="shape"></div>
         <div className="shape"></div>
       </div>
-      <form onSubmit={handleFormSubmit}>
+      <form onSubmit={handleFormSubmit} className="login-form">
         <h3>Login Here</h3>
 
         <label htmlFor="username">Username</label>
@@ -62,7 +62,7 @@ const Login = () => {
           onChange={handleInputChange}
         />
 
-        <button>Log In</button>
+        <button className="login-button">Log In</button>
         <div className="social">
           <Link to="/register">Register</Link>
         </div>
