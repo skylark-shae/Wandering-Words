@@ -43,6 +43,14 @@ UserPost.init(
     tableName: 'user_posts',
     timestamps: false,
   }
+<<<<<<< Updated upstream
 );
+=======
+);+
+
+
+UserPost.belongsTo(User, { as: 'user', foreignKey: 'user_id'});
+User.hasMany(UserPost, { as: 'posts', foreignKey: 'user_id'});
+>>>>>>> Stashed changes
 
 export default UserPost;
