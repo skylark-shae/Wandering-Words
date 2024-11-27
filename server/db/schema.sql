@@ -16,16 +16,14 @@ CREATE TABLE users (
 
 CREATE TABLE ai_posts (
     id SERIAL PRIMARY KEY,
-    title VARCHAR(255) NOT NULL, 
-    subheading VARCHAR(255) NOT NULL,
-    content TEXT NOT NULL, 
+    post_id INT REFERENCES user_posts(id), 
+    user_id VARCHAR (50) NOT NULL UNIQUE,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE TABLE user_posts (
     id SERIAL PRIMARY KEY,
     title VARCHAR(255) NOT NULL, 
-    subheading VARCHAR(255) NOT NULL,
     content TEXT NOT NULL, 
     user_id INT REFERENCES users(id), 
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
