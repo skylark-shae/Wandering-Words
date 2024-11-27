@@ -44,4 +44,12 @@ Comment.init(
   }
 );
 
+<<<<<<< Updated upstream
+=======
+Comment.belongsTo(User, { as: 'user', foreignKey: 'user_id' });
+Comment.belongsTo(UserPost, { as: 'post', foreignKey: 'post_id' });
+User.hasMany(Comment, { as: 'comments', foreignKey: 'user_id' });
+UserPost.hasMany(Comment, { as: 'comments', foreignKey: 'post_id' });
+
+>>>>>>> Stashed changes
 export default Comment;
