@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { retrieveTip } from "../api/tipAPI";
+import { retrieveTip } from "../api/captchaAPI";
 import UpdateTipForm from "../components/UpdateTipForm";
 
 const SingleTip = () => {
