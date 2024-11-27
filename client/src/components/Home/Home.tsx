@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import { deleteActiveUser, IUserModel } from "../LocalStorage";
+import { deleteActiveUser, IUserModel } from "../../LocalStorage";
+import "./Home.css";
 
 const Home = () => {
   const [activeUser, setActiveUser] = userState<IUserModel>();
@@ -8,7 +9,7 @@ const Home = () => {
   useEffect(() => {
     const data = getActiveUser();
     if (data === null) {
-      navigate("/login");
+      navigate("/Login");
     }
 
     setActiveUser(data);
@@ -16,7 +17,7 @@ const Home = () => {
 
   const handleLogout = () => {
     deleteActiveUser();
-    navigate("/login");
+    navigate("/Login");
   };
 
   return (
