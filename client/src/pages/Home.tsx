@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { retrieveTips } from "../api/tipAPI";
+import { retrieveTips } from "../api/captchaAPI";
 import type { TipData } from "../interfaces/TipData";
 import TipList from "../components/Tips"
 import TipForm from "../components/TipForm";

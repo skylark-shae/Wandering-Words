@@ -1,18 +1,16 @@
-import { useState } from "react";
-import { addNewUser, isUserAlreadyRegistered } from "../LocalStorage";
+import React, { useState } from "react";
+import { addNewUser, isUserAlreadyRegistered } from "../../LocalStorage";
 import { Link } from "react-router-dom";
-
+import "./Register.css";
 interface IUserModel {
-  firstName: string;
-  lastName: string;
+  email: string;
   username: string;
   password: string;
 }
 
 const Register = () => {
   const [data, setData] = useState<IUserModel>({
-    firstName: "",
-    lastName: "",
+    email: "",
     username: "",
     password: "",
   });
@@ -22,6 +20,7 @@ const Register = () => {
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const id = event.target.id;
     const value = event.target.value;
+    console.log(id, value);
 
     setData({ ...data, [id]: value });
     setMessage("");
@@ -31,12 +30,7 @@ const Register = () => {
     event.preventDefault();
 
     //          if one of the forms was left blank, display message
-    if (
-      data.firstName === "" ||
-      data.lastName === "" ||
-      data.username === "" ||
-      data.password === ""
-    ) {
+    if (data.email === "" || data.username === "" || data.password === "") {
       setMessage("Please fill out all sections of the form.");
       return;
     }
@@ -48,12 +42,13 @@ const Register = () => {
     }
     //          save new user in local storage
     addNewUser(data);
-    setMessage("User created. Click on Login.  ");
+    setMessage("User created.");
     setData({
-      firstName: "",
-      lastName: "",
+      email: "",
       username: "",
       password: "",
+
+      //user email password
     });
   };
 
@@ -63,40 +58,31 @@ const Register = () => {
         <div className="shape"></div>
         <div className="shape"></div>
       </div>
-      <form onSubmit={handleFormSubmit}>
+      <form className="register-form" onSubmit={handleFormSubmit}>
         <h3>Sign Up Now!</h3>
 
-        <label htmlFor="firstName">First Name</label>
+        <label htmlFor="email">Email</label>
         <input
           type="text"
-          placeholder="First Name"
-          id="firstName"
-          value={data.firstName}
-          onChange={handleInputChange}
-        />
-
-        <label htmlFor="lastName">Last Name</label>
-        <input
-          type="text"
-          placeholder="Last Name"
-          id="lastName"
-          value={data.lastName}
+          placeholder="Create your email"
+          id="email"
+          value={data.email}
           onChange={handleInputChange}
         />
 
         <label htmlFor="username">Username</label>
         <input
           type="text"
-          placeholder="Email or Phone"
+          placeholder="Set your username"
           id="username"
-          value={data.password}
+          value={data.username}
           onChange={handleInputChange}
         />
 
         <label htmlFor="password">Password</label>
         <input
           type="password"
-          placeholder="Password"
+          placeholder="Create your password"
           id="password"
           value={data.password}
           onChange={handleInputChange}
@@ -105,7 +91,8 @@ const Register = () => {
         <button className="register-button">Sign Up</button>
         <div className="social">
           {message && <p>{message}</p>}
-          <Link to="/login">Login</Link>
+          {"\u00A0"}
+          <Link to="/Login">Login</Link>
         </div>
       </form>
     </>
