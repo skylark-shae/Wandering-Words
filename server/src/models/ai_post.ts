@@ -1,39 +1,35 @@
 import { Model, DataTypes } from 'sequelize';
-import sequelize from '../connection';
+import { sequelize } from '../connection';
 
-class AiPost extends Model {
+export default class AiPost extends Model {
   public id!: number;
-  public title!: string;
-  public subheading!: string;
-  public content!: string;
-  public created_at!: Date;
+  public post_id!: number;
+  public user_id!: string;
 }
 
 AiPost.init(
   {
-    title: {
-      type: DataTypes.STRING(255),
-      allowNull: false,
+    id: {
+      type: DataTypes.INTEGER,
+      autoIncrement: true,
+      primaryKey: true,
     },
-    subheading: {
-      type: DataTypes.STRING(255),
-      allowNull: false,
+    post_id: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: UserPost,
+        key: 'id',
+      },
     },
-    content: {
-      type: DataTypes.TEXT,
+    user_id: {
+      type: DataTypes.STRING(50),
       allowNull: false,
-    },
-    created_at: {
-      type: DataTypes.DATE,
-      defaultValue: DataTypes.NOW,
+      unique: true,
     },
   },
   {
     sequelize,
     modelName: 'AiPost',
     tableName: 'ai_posts',
-    timestamps: false,
   }
 );
-
-export default AiPost;
