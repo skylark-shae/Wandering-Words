@@ -5,7 +5,6 @@ import User from './user';
 class UserPost extends Model {
   public id!: number;
   public title!: string;
-  public subheading!: string;
   public content!: string;
   public user_id!: number;
   public created_at!: Date;
@@ -13,11 +12,12 @@ class UserPost extends Model {
 
 UserPost.init(
   {
-    title: {
-      type: DataTypes.STRING(255),
-      allowNull: false,
+    id: {
+      type: DataTypes.INTEGER,
+      autoIncrement: true,
+      primaryKey: true,
     },
-    subheading: {
+    title: {
       type: DataTypes.STRING(255),
       allowNull: false,
     },
