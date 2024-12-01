@@ -35,13 +35,6 @@ const Login = () => {
       alert("Error in login.");
     }
 
-    // const user = getUser(data.username, data.password);
-    // if (!user) {
-    //   alert("Username or Password is not correct.");
-    //   return;
-    // }
-
-    // updateActiveUser(user);
     navigate("/");
   };
 
