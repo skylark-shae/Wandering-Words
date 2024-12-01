@@ -1,7 +1,10 @@
 const REGISTERED_USERS = "registered_users";
 const ACTIVE_USER = "active_user";
+const accessToken = "accessToken";
 
 export interface IUserModel {
+  id: string;
+  email: string;
   username: string;
   password: string;
 }
@@ -23,7 +26,7 @@ const isUserAlreadyRegistered = (username: string): boolean => {
   return foundUser != null;
 };
 
-const getUser = (username: string, password: string): any => {
+const getUser = (username: string, password: string) => {
   const userStr = localStorage.getItem(REGISTERED_USERS) || null;
   if (userStr === null) return null;
 
@@ -46,7 +49,7 @@ const getActiveUser = () => {
 };
 
 const deleteActiveUser = () => {
-  localStorage.removeIten(ACTIVE_USER);
+  localStorage.removeItem(ACTIVE_USER);
 };
 
 export {

@@ -1,19 +1,18 @@
 import React, { useState } from "react";
 import { addNewUser, isUserAlreadyRegistered } from "../../LocalStorage";
 import { Link } from "react-router-dom";
+import { IUserModel } from "../../model/Auth";
+import { registerUser } from "../../service/AuthService";
 import "./Register.css";
-interface IUserModel {
-  email: string;
-  username: string;
-  password: string;
-}
+
+const defaultData: IUserModel = {
+  email: "",
+  username: "",
+  password: "",
+};
 
 const Register = () => {
-  const [data, setData] = useState<IUserModel>({
-    email: "",
-    username: "",
-    password: "",
-  });
+  const [data, setData] = useState<IUserModel>(defaultData);
 
   const [message, setMessage] = useState<string>("");
 
@@ -24,7 +23,7 @@ const Register = () => {
     setMessage("");
   };
 
-  const handleFormSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleFormSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     //          if one of the forms was left blank, display message
@@ -33,6 +32,21 @@ const Register = () => {
       return;
     }
 
+    try {
+      const result = await registerUser(data);
+      if (result.status === 201) {
+        setData(defaultData);
+        setMessage("User registered, Click on login.");
+      } else {
+        alert("Error registering new user");
+      }
+      console.log(result);
+    } catch (error) {
+      console.log(error);
+      // alert(`Error`); we do not need this extra aleart
+    }
+    // Call the API, to register new user
+
     //          if email ID already exists, display message
     if (isUserAlreadyRegistered(data.username)) {
       setMessage("User already exists.");
@@ -40,7 +54,7 @@ const Register = () => {
     }
     //          save new user in local storage
     addNewUser(data);
-    setMessage("User created.");
+    setMessage("User created please click the link to");
     setData({
       email: "",
       username: "",
@@ -87,11 +101,9 @@ const Register = () => {
         />
 
         <button className="register-button">Sign Up</button>
-        <div className="social">
-          {message && <p>{message}</p>}
-          {"\u00A0"}
-          <Link to="/Login">Login</Link>
-        </div>
+        <div className="social">{message && <p>{message}</p>}</div>
+        <Link to="/Login">Login</Link>
+        {/* TODO: add a hover effect to make the text larger. also add an underline to the link, to help others realize it is a link */}
       </form>
     </>
   );

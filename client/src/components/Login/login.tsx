@@ -1,16 +1,12 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { getUser, updateActiveUser } from "../../LocalStorage";
+import { ILoginModel } from "../../model/Auth";
+import { login, setToken } from "../../service/AuthService";
 import "./Login.css";
-
-interface ILoginModel {
-  username: string;
-  password: string;
-}
 
 const Login = () => {
   const [data, setData] = useState<ILoginModel>({ username: "", password: "" });
-
   const navigate = useNavigate();
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const id = event.target.id;
@@ -19,20 +15,33 @@ const Login = () => {
     setData({ ...data, [id]: value });
   };
 
-  const handleFormSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleFormSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     if (data.username === "" || data.password === "") {
-      alert("Please fill out the form.");
+      alert("Please fill out the form completely.");
     }
 
-    const user = getUser(data.username, data.password);
-    if (user === null) {
-      alert("Username or Password is not correct.");
-      return;
+    try {
+      const result = await login(data);
+      if (result.status === 200) {
+        console.log(result);
+        setToken(result.data.accessToken);
+        navigate("/");
+      } else {
+        alert("Error in login.");
+      }
+    } catch (error) {
+      alert("Error in login.");
     }
 
-    updateActiveUser(user);
+    // const user = getUser(data.username, data.password);
+    // if (!user) {
+    //   alert("Username or Password is not correct.");
+    //   return;
+    // }
+
+    // updateActiveUser(user);
     navigate("/");
   };
 

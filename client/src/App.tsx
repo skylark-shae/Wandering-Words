@@ -5,12 +5,13 @@ import {
   Route,
   Routes,
 } from "react-router-dom";
-import "./App.css";
-import Login from "./components/login";
-import Register from "./components/Register";
-import Home from "./components/Home";
-import { getActiveUser } from "./LocalStorage";
+import Login from "./components/Login/Login";
+import Register from "./components/Register/Register";
+import Home from "./components/Home/Home";
 import Navbar from "./components/Navbar/Navbar";
+import "./App.css";
+import { isTokenValid } from "./service/AuthService";
+import ContactForm from "./components/ContactForm";
 
 function App() {
   return (
@@ -20,8 +21,10 @@ function App() {
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/" element={<PrivateRoute />} />ç
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<PrivateRoute />}>
+            <Route path="/" element={<Home />}></Route>
+          </Route>
+          <Route path="/contact" element={<ContactForm />} />
         </Routes>
       </BrowserRouter>
     </>
@@ -29,9 +32,9 @@ function App() {
 }
 
 const PrivateRoute = () => {
-  const activeUser = getActiveUser();
-  if (activeUser === null) return <Navigate to={"/login"} />;
-
+  if (!isTokenValid()) {
+    return <Navigate to="/login" />;
+  }
   return <Outlet />;
 };
 

@@ -1,18 +1,22 @@
 import { Model, DataTypes } from 'sequelize';
-import sequelize from '../connection';
-import User from './user';
-import UserPost from './user_post';
+import sequelize from '../config/connection.js';
+import User from './user.js';
+import UserPost from './user-post.js';
 
 class Comment extends Model {
   public id!: number;
   public content!: string;
   public post_id!: number;
   public user_id!: number;
-  public created_at!: Date;
 }
 
 Comment.init(
   {
+    id: {
+      type: DataTypes.INTEGER,
+      autoIncrement: true,
+      primaryKey: true,
+    },
     content: {
       type: DataTypes.TEXT,
       allowNull: false,
@@ -20,28 +24,28 @@ Comment.init(
     post_id: {
       type: DataTypes.INTEGER,
       references: {
-        model: UserPost,
+        model: 'user_posts',
         key: 'id',
       },
     },
     user_id: {
       type: DataTypes.INTEGER,
       references: {
-        model: User,
+        model: 'users',
         key: 'id',
       },
-    },
-    created_at: {
-      type: DataTypes.DATE,
-      defaultValue: DataTypes.NOW,
     },
   },
   {
     sequelize,
     modelName: 'Comment',
     tableName: 'comments',
-    timestamps: false,
   }
 );
+
+Comment.belongsTo(User, { as: 'user', foreignKey: 'user_id' });
+Comment.belongsTo(UserPost, { as: 'post', foreignKey: 'post_id' });
+User.hasMany(Comment, { as: 'comments', foreignKey: 'user_id' });
+UserPost.hasMany(Comment, { as: 'comments', foreignKey: 'post_id' });
 
 export default Comment;

@@ -2,8 +2,8 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 import { Sequelize } from 'sequelize';
-import { FeedbackFactory } from './feedback.js';
-import { TipFactory } from './tips.js';
+// import { FeedbackFactory } from './feedback.js';
+// import { TipFactory } from './tips.js';
 
 const sequelize = process.env.DB_URL
   ? new Sequelize(process.env.DB_URL)
@@ -20,7 +20,7 @@ const sequelize = process.env.DB_URL
       }
     );
 
-const Tip = TipFactory(sequelize);
-const Feedback = FeedbackFactory(sequelize);
+// const Tip = TipFactory(sequelize);
+// const Feedback = FeedbackFactory(sequelize);
 
-export { sequelize, Feedback, Tip };
+export { sequelize };
