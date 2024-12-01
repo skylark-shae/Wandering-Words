@@ -31,6 +31,7 @@ function App() {
   );
 }
 
+// Private route component
 const PrivateRoute = () => {
   if (!isTokenValid()) {
     return <Navigate to="/login" />;
