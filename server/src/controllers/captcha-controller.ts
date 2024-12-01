@@ -29,11 +29,11 @@ export const verifyCaptcha = async (req: Request, res: Response) => {
     const { success } = verificationResponse.data;
 
     if (success) {
-      res.status(200).json({ success: true, message: 'CAPTCHA verified successfully.' });
+      return res.status(200).json({ success: true, message: 'CAPTCHA verified successfully.' });
     } else {
-      res.status(400).json({ success: false, message: 'CAPTCHA verification failed.' });
+      return res.status(400).json({ success: false, message: 'CAPTCHA verification failed.' });
     }
   } catch (error) {
-    res.status(500).json({ success: false, message: 'Server error.' });
+    return res.status(500).json({ success: false, message: 'Server error.' });
   }
 };

@@ -45,7 +45,7 @@ export const updateUser = async (req: Request, res: Response) => {
     const user = await User.findByPk(id);
     if (user) {
       user.username = username;
-      user.password = password;
+      user.password_hash = password;
       await user.save();
       res.json(user);
     } else {

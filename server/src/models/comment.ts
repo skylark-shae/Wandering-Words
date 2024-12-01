@@ -1,7 +1,9 @@
-import { Model, DataTypes } from 'sequelize';
-import { sequelize } from '../connection';
+import { Model, DataTypes } from "sequelize";
+import sequelize from "../config/connection.js";
+import User from "./user.js";
+import UserPost from "./user-post.js";
 
-export default class Comment extends Model {
+class Comment extends Model {
   public id!: number;
   public content!: string;
   public post_id!: number;
@@ -22,35 +24,28 @@ Comment.init(
     post_id: {
       type: DataTypes.INTEGER,
       references: {
-        model: 'user_posts',
-        key: 'id',
+        model: "user_posts",
+        key: "id",
       },
     },
     user_id: {
       type: DataTypes.INTEGER,
       references: {
-        model: 'users',
-        key: 'id',
+        model: "users",
+        key: "id",
       },
     },
   },
   {
     sequelize,
-    modelName: 'Comment',
-    tableName: 'comments',
+    modelName: "Comment",
+    tableName: "comments",
   }
-<<<<<<< HEAD
-);
-=======
 );
 
-<<<<<<< Updated upstream
-=======
-Comment.belongsTo(User, { as: 'user', foreignKey: 'user_id' });
-Comment.belongsTo(UserPost, { as: 'post', foreignKey: 'post_id' });
-User.hasMany(Comment, { as: 'comments', foreignKey: 'user_id' });
-UserPost.hasMany(Comment, { as: 'comments', foreignKey: 'post_id' });
+Comment.belongsTo(User, { as: "user", foreignKey: "user_id" });
+Comment.belongsTo(UserPost, { as: "post", foreignKey: "post_id" });
+User.hasMany(Comment, { as: "comments", foreignKey: "user_id" });
+UserPost.hasMany(Comment, { as: "comments", foreignKey: "post_id" });
 
->>>>>>> Stashed changes
 export default Comment;
->>>>>>> main

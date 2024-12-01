@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
-import Comment from '../models/comment';
+import Comment from '../models/comment.js';
 import User from '../models/user.js';
-import UserPost from '../models/user_post';
+import UserPost from '../models/user-post.js';
 
 export const getAllComments = async (_req: Request, res: Response) => {
   try {

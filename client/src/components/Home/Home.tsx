@@ -1,29 +1,60 @@
 import { useEffect, useState } from "react";
-import { deleteActiveUser, IUserModel } from "../../LocalStorage";
+import { deleteActiveUser, getActiveUser } from "../../LocalStorage";
+import { getUser } from "../../service/UserService";
+import { useNavigate } from "react-router";
 import "./Home.css";
+import { getTokenData, setToken } from "../../service/AuthService";
+import { IUserResponse } from "../../model/Auth";
 
 const Home = () => {
-  const [activeUser, setActiveUser] = userState<IUserModel>();
+  const [data, setData] = useState<IUserResponse>({
+    id: "",
+    email: "",
+    username: "",
+    password: "",
+  });
+  // const [activeUser, setActiveUser] = useState<IUserModel>();
   const navigate = useNavigate();
 
   useEffect(() => {
-    const data = getActiveUser();
-    if (data === null) {
-      navigate("/Login");
-    }
+    // const data = getActiveUser();
+    const fetchUserData = async () => {
+      const tokenData = getTokenData();
+      console.log("hi", tokenData);
+      if (tokenData === null) {
+        console.log("Going back to the login component.");
+        navigate("/Login");
+        return;
+      }
+      try {
+        if (tokenData) {
+          console.log(tokenData);
+          const result = await getUser(tokenData?.id);
+          console.log(result);
+          setData(result.data);
+        }
+      } catch (error) {
+        navigate("/Login");
+        console.log("Going back to the login catch");
+        return;
+      }
+    };
 
-    setActiveUser(data);
+    fetchUserData();
   }, []);
 
   const handleLogout = () => {
-    deleteActiveUser();
+    setToken("");
+
     navigate("/Login");
   };
 
   return (
     <>
-      <div style={{ color: "white" }}>Welcome {activeUser?.name}</div>;
-      <button onClick={handleLogout}>Logout</button>
+      <div className="greeting-message">Welcome {data.username}</div>;
+      <button className="logout-button" onClick={handleLogout}>
+        Logout
+      </button>
     </>
   );
 };

@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import AiPost from '../models/ai_post';
+import AiPost from '../models/ai-post.js';
 
 
 export const getAllAiPosts = async (_req: Request, res: Response) => {
