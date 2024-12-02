@@ -3,7 +3,7 @@ import "./App.css";
 
 // Import components
 import Navbar from "./components/Navbar/Navbar";
-import Login from "./components/Login/login.tsx"; // Error in file name
+import Login from "./components/Login/Login.tsx"; // Error in file name
 import Register from "./components/Register/Register";
 import Home from "./components/Home/Home";
 import ContactForm from "./components/ContactForm";
