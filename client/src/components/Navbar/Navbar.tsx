@@ -1,12 +1,6 @@
 import "./Navbar.css";
-import {
-  BiHome,
-  // BiUser,
-  // BiCodeCurly,
-  // BiSolidBook,
-  // BiMessageSquareDetail,
-} from "react-icons/bi";
-// import { RiServiceLine } from "react-icons/ri";
+import { BiHome, BiUser, BiLogIn, BiLogOut } from "react-icons/bi";
+import { RiServiceLine } from "react-icons/ri";
 import { Link as ScrollLink } from "react-scroll";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
@@ -50,40 +44,36 @@ function Navbar() {
           </li> */}
 
           {/* Add New Post button */}
-          <li className="navbar__item">
-            <button
-              className="navbar__button"
-              onClick={() => navigate("/NewPostPage")} // Navigate to new user post page
-            >
+          <li>
+            <ScrollLink to="NewPostPage" smooth={true} duration={500} offset={-80} className="navbar__logo">
+              <BiUser className="navbar__icon" />
               + New Post
-            </button>
+            </ScrollLink>
           </li>
 
           {/* Add New AI Post button */}
-          <li className="navbar__item">
-            <button
-              className="navbar__button"
-              onClick={() => navigate("/NewAIPostPage")} // Navigate to new AI post page
-            >
+          <li>
+            <ScrollLink to="NewAIPostPage" smooth={true} duration={500} offset={-80} className="navbar__logo">
+              <RiServiceLine className="navbar__icon" />
               + New AI Post
-            </button>
+            </ScrollLink>
           </li>
 
-          {/* Conditional Logout button */}
+          {/* Conditional Logout link */}
           {isLoggedIn && (
             <li className="navbar__item">
-              <button className="navbar__button" onClick={handleLogout}>
-                Logout
-              </button>
+              <ScrollLink to="#" onClick={handleLogout} className="navbar__logo">
+                <BiLogOut className="navbar__icon" /> Logout
+              </ScrollLink>
             </li>
           )}
 
-          {/* Conditional Login button */}
+          {/* Conditional Login link */}
           {!isLoggedIn && (
             <li className="navbar__item">
-              <button className="navbar__button" onClick={handleLogin}>
-                Login
-              </button>
+              <ScrollLink to="#" onClick={handleLogin} className="navbar__logo">
+                <BiLogIn className="navbar__icon" /> Login
+              </ScrollLink>
             </li>
           )}
         </ul>
