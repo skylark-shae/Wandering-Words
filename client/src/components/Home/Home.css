@@ -5,3 +5,11 @@
 .greeting-message {
   margin-top: 100px;
 }
+.center-post-list {
+
+}
+
+.home-page {
+  margin-top:150px;
+  display: flex;
+}

@@ -22,13 +22,13 @@ export const getAiPostById = async (req, res) => {
     }
 };
 export const createNewAiPost = async (req, res) => {
+    const { title, subheading, content, user_id } = req.body;
     try {
-        const { title, subheading, content } = req.body;
-        const newPost = await AiPost.create({ title, subheading, content });
+        const newPost = await AiPost.create({ title, subheading, content, user_id });
         res.status(201).json(newPost);
     }
     catch (error) {
-        res.status(500).json({ message: error.message });
+        res.status(400).json({ message: error.message });
     }
 };
 export const updateAiPost = async (req, res) => {

@@ -1,17 +1,24 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { getUser, updateActiveUser } from "../../LocalStorage";
+import { ILoginModel } from "../../model/Auth";
+import { getTokenData, login, setToken } from "../../service/AuthService";
 import "./Login.css";
-
-interface ILoginModel {
-  username: string;
-  password: string;
-}
+import { getUser } from "../../service/UserService";
+import { getActiveUser, updateActiveUser } from "../../LocalStorage";
 
 const Login = () => {
   const [data, setData] = useState<ILoginModel>({ username: "", password: "" });
-
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const activeUser = getActiveUser();
+
+    if (activeUser) {
+      navigate("/")
+    }
+  }, [])
+
+
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const id = event.target.id;
     const value = event.target.value;
@@ -19,25 +26,45 @@ const Login = () => {
     setData({ ...data, [id]: value });
   };
 
-  const handleFormSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleFormSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     if (data.username === "" || data.password === "") {
-      alert("Please fill out the form.");
+      alert("Please fill out the form completely.");
     }
 
-    const user = getUser(data.username, data.password);
-    if (user === null) {
-      alert("Username or Password is not correct.");
-      return;
+    try {
+      const result = await login(data);
+      if (result.status === 200) {
+        console.log(result, 'hi');
+        setToken(result.data.accessToken);
+        const tokenData = getTokenData();
+
+        try {
+          if (tokenData) {
+            console.log(tokenData)
+            const result = await getUser(tokenData?.id);
+            setData(result.data);
+            updateActiveUser(result.data)
+          }
+        } catch (error) {
+          console.log(error)
+        }
+        navigate("/");
+        console.log('should be navigating')
+      } else {
+        alert("Error in login.");
+      }
+    } catch (error) {
+      alert("Error in login.");
     }
 
-    updateActiveUser(user);
     navigate("/");
   };
 
   return (
     <>
+    <div className="login-page">
       <div className="background">
         <div className="shape"></div>
         <div className="shape"></div>
@@ -68,6 +95,7 @@ const Login = () => {
           <Link to="/register">Register</Link>
         </div>
       </form>
+    </div>
     </>
   );
 };

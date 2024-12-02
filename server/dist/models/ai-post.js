@@ -1,7 +1,7 @@
 import { Model, DataTypes } from 'sequelize';
 import sequelize from '../config/connection.js';
-import UserPost from './user-post.js';
-export default class AiPost extends Model {
+import User from './user.js';
+class AiPost extends Model {
 }
 AiPost.init({
     id: {
@@ -9,20 +9,31 @@ AiPost.init({
         autoIncrement: true,
         primaryKey: true,
     },
-    post_id: {
+    title: {
+        type: DataTypes.STRING(255),
+        allowNull: false,
+    },
+    content: {
+        type: DataTypes.TEXT,
+        allowNull: false,
+    },
+    user_id: {
         type: DataTypes.INTEGER,
         references: {
-            model: UserPost,
+            model: User,
             key: 'id',
         },
     },
-    user_id: {
-        type: DataTypes.STRING(50),
-        allowNull: false,
-        unique: true,
+    created_at: {
+        type: DataTypes.DATE,
+        defaultValue: DataTypes.NOW,
     },
 }, {
     sequelize,
     modelName: 'AiPost',
     tableName: 'ai_posts',
+    timestamps: false,
 });
+AiPost.belongsTo(User, { as: 'user', foreignKey: 'user_id' });
+User.hasMany(AiPost, { as: 'ai_posts_user', foreignKey: 'user_id' });
+export default AiPost;

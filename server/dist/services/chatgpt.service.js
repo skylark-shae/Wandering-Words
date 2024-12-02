@@ -8,6 +8,7 @@ class ChatGPTService {
         });
     }
     async chatGptCompletionRequest(prompt, systemPrompt, history = []) {
+        console.log(process.env['OPENAI_ORGANIZATION'], process.env['OPENAI_PROJECTID'], process.env['API_KEY_CHATGPT']);
         const completion = await this.openai.chat.completions.create({
             model: 'gpt-3.5-turbo',
             messages: [

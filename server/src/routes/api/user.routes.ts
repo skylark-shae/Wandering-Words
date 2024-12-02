@@ -8,7 +8,7 @@ import {
 } from "../../controllers/user-controller.js";
 
 const router = express.Router();
-import auth from "../../middleware/auth.js";
+import auth from '../../middleware/auth.js'
 
 router.get("/", getAllUsers);
 
@@ -19,5 +19,7 @@ router.post("/", createUser);
 router.put("/:id", updateUser);
 
 router.delete("/:id", auth, deleteUser);
+
+router.delete('/:id', auth, deleteUser);
 
 export { router as userRouter };

@@ -5,7 +5,7 @@ axios.defaults.baseURL = "http://localhost:4200/api";
 
 axios.interceptors.request.use((config) => {
   const token = getToken();
-  config.headers.Authorization = `Bearer ${token}`;
+  config.headers.Bearer = `${token}`;
   return config;
 });
 

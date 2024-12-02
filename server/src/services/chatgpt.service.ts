@@ -12,6 +12,11 @@ class ChatGPTService {
         systemPrompt: string,
         history = [],
     ) {
+        console.log(
+            process.env['OPENAI_ORGANIZATION'],
+            process.env['OPENAI_PROJECTID'],
+            process.env['API_KEY_CHATGPT'] 
+        );
         const completion: any = await this.openai.chat.completions.create({
             model: 'gpt-3.5-turbo',
             messages: [

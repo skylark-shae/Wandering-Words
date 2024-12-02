@@ -1,21 +1,30 @@
-import React, { useState } from 'react';
-import { createPost } from '../api/apiSevices'; // Adjust the path to your service file
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom'; // If using React Router for navigation
+import './NewPage.css';
+import { createPost } from '../service/PostService';
+import { getActiveUser } from '../LocalStorage';
 
 const NewPostPage: React.FC = () => {
   const [title, setTitle] = useState('');
+  const [subheading, setSubheading] = useState('');
   const [content, setContent] = useState('');
-  const [author, setAuthor] = useState('');
   const [error, setError] = useState<string | null>(null);
   
   const navigate = useNavigate(); // For redirecting after submission
+  useEffect(() => {
+    const activeUser = getActiveUser();
+
+    if (!activeUser) {
+      navigate("/Login")
+    }
+  }, [])
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError(null); // Reset error message
 
     try {
-      await createPost({ title, content, author });
+      await createPost({ title, content, subheading });
       navigate('/'); // Redirect to homepage or post list after successful creation
     } catch (err) {
       setError('Failed to create the post. Please try again.');
@@ -39,6 +48,16 @@ const NewPostPage: React.FC = () => {
         </div>
 
         <div className="form-group">
+          <label>Author:</label>
+          <input
+            type="text"
+            value={subheading}
+            onChange={(e) => setSubheading(e.target.value)}
+            required
+          />
+        </div>
+
+        <div className="form-group">
           <label>Content:</label>
           <textarea
             value={content}
@@ -47,15 +66,7 @@ const NewPostPage: React.FC = () => {
           />
         </div>
 
-        <div className="form-group">
-          <label>Author:</label>
-          <input
-            type="text"
-            value={author}
-            onChange={(e) => setAuthor(e.target.value)}
-            required
-          />
-        </div>
+
 
         <button type="submit">Create Post</button>
       </form>

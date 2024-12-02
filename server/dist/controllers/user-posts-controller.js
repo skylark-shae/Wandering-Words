@@ -11,7 +11,7 @@ export const getAllPosts = async (_req, res) => {
                 },
             ],
         });
-        res.json({ ...posts, ..._req.body });
+        res.json(posts);
     }
     catch (error) {
         res.status(500).json({ message: error.message });

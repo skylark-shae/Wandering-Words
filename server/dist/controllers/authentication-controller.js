@@ -1,7 +1,10 @@
-import { compare, hash } from "bcrypt";
-import jwt from "jsonwebtoken";
-import User from "../models/user.js";
-const JWT_SECRET = process.env["JWT_SECRET"] || "";
+import { compare, hash } from 'bcrypt';
+import jwt from 'jsonwebtoken';
+import User from '../models/user.js';
+import generateTokens from '../utils/generateTokens.js';
+import UserToken from '../models/user-token.js';
+import verifyRefreshToken from '../utils/verifyRefreshToken.js';
+const JWT_SECRET = process.env['ACCESS_TOKEN_SECRET'] || '';
 export const login = async (req, res) => {
     try {
         let { username, password } = req.body;
@@ -11,19 +14,16 @@ export const login = async (req, res) => {
             throw { error: "Password is required" };
         let user = await User.findOne({
             where: {
-                username,
-            },
+                username
+            }
         });
         if (!user)
             throw { error: "Invalid email/password" };
         let valid = await compare(password, user.password_hash);
         if (!valid)
             throw { error: "Invalid email/password" };
-        let jwtOptions = {
-            expiresIn: 30 * 60,
-        };
-        let access_token = jwt.sign({ id: user.id }, JWT_SECRET, jwtOptions);
-        res.header("auth-token", access_token).json({ accessToken: access_token });
+        const { accessToken, refreshToken } = await generateTokens(user);
+        res.status(200).header('Bearer', accessToken).json({ accessToken, refreshToken });
     }
     catch (error) {
         console.log(error);
@@ -38,12 +38,40 @@ export const register = async (req, res) => {
         let user = await User.create({
             username,
             email,
-            password_hash: hashedPassword,
+            password_hash: hashedPassword
         });
         let access_token = jwt.sign({ id: user.id }, JWT_SECRET);
         res.status(200).json({ access_token });
     }
     catch (error) {
-        res.status(500).send("Error registering user");
+        console.log(error);
+        res.status(500).send('Error registering user');
+    }
+};
+export const getNewAccessToken = async (req, res) => {
+    if (!req.body.refreshToken) {
+        return res.status(500).json({ error: true, message: 'missing refreshToken in body' });
+    }
+    console.log('shouldnt be working');
+    const { tokenDetails } = await verifyRefreshToken(req.body.refreshToken);
+    const payload = { _id: tokenDetails._id, email: tokenDetails.email };
+    const accessToken = jwt.sign(payload, JWT_SECRET, { expiresIn: '14m' });
+    return res.status(200).json({ error: false, accessToken, message: 'Access token created successfully' });
+};
+export const logout = async (req, res) => {
+    try {
+        const userToken = await UserToken.findOne({ where: { token: req.body.refreshToken } });
+        if (!userToken) {
+            return res.status(200).json({
+                error: false,
+                message: 'Logged otu success!'
+            });
+        }
+        await userToken.destroy();
+        return res.status(200).json({ error: false, message: "Logged Out Sucessfully" });
+    }
+    catch (error) {
+        console.log(error);
+        return res.status(500).json({ error: true, message: "Internal Server Error" });
     }
 };

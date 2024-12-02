@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import { addNewUser, isUserAlreadyRegistered } from "../../LocalStorage";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { addNewUser, getActiveUser, isUserAlreadyRegistered } from "../../LocalStorage";
+import { Link, useNavigate } from "react-router-dom";
 import { IUserModel } from "../../model/Auth";
 import { registerUser } from "../../service/AuthService";
 import "./Register.css";
@@ -15,7 +15,14 @@ const Register = () => {
   const [data, setData] = useState<IUserModel>(defaultData);
 
   const [message, setMessage] = useState<string>("");
+  const navigate = useNavigate();
+  useEffect(() => {
+    const activeUser = getActiveUser();
 
+    if (activeUser) {
+      navigate("/")
+    }
+  }, [])
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const id = event.target.id;
     const value = event.target.value;
