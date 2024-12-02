@@ -1,7 +1,8 @@
 /* Basic New Post CSS. Updates needed. ! */
-.new-post-container {
+  .new-post-container {
     width: 80%;
     margin: 2rem auto;
+    margin-top: 140px;
     padding: 1.5rem;
     border: 1px solid #ccc;
     border-radius: 8px;

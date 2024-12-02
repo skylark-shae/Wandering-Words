@@ -107,3 +107,9 @@
 .social i {
   margin-right: 4px;
 }
+
+.login-page {
+  height: 100vh;
+  width: 100vw;
+  background-color: #080710;
+}

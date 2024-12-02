@@ -1,6 +1,5 @@
 const REGISTERED_USERS = "registered_users";
 const ACTIVE_USER = "active_user";
-const accessToken = "accessToken";
 
 export interface IUserModel {
   id: string;
@@ -43,6 +42,7 @@ const updateActiveUser = (user: IUserModel) => {
 
 const getActiveUser = () => {
   const activeUser = localStorage.getItem(ACTIVE_USER) || null;
+  console.log('activeUser', activeUser)
   if (activeUser === null) return null;
 
   return JSON.parse(activeUser);

@@ -2,26 +2,21 @@ import { Model, DataTypes } from 'sequelize';
 import sequelize from '../config/connection.js';
 import User from './user.js';
 
-class AiPost extends Model {
+class UserToken extends Model {
   public id!: number;
-  public title!: string;
-  public content!: string;
+  public token!: string;
   public user_id!: number;
   public created_at!: Date;
 }
 
-AiPost.init(
+UserToken.init(
   {
     id: {
       type: DataTypes.INTEGER,
       autoIncrement: true,
       primaryKey: true,
     },
-    title: {
-      type: DataTypes.STRING(255),
-      allowNull: false,
-    },
-    content: {
+    token: {
       type: DataTypes.TEXT,
       allowNull: false,
     },
@@ -39,13 +34,14 @@ AiPost.init(
   },
   {
     sequelize,
-    modelName: 'AiPost',
-    tableName: 'ai_posts',
+    modelName: 'UserToken',
+    tableName: 'user_tokens',
     timestamps: false,
   }
 );
 
-AiPost.belongsTo(User, { as: 'user', foreignKey: 'user_id'});
-User.hasMany(AiPost, { as: 'ai_posts_user', foreignKey: 'user_id'});
 
-export default AiPost;
+UserToken.belongsTo(User, { as: 'user', foreignKey: 'user_id'});
+User.hasMany(UserToken, { as: 'tokens', foreignKey: 'user_id'});
+
+export default UserToken;

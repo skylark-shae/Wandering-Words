@@ -13,7 +13,7 @@ export const getAllPosts = async (_req: Request, res: Response) => {
             },
             ],
         });
-        res.json({...posts, ..._req.body});
+        res.json(posts);
         } catch (error: any) {
           res.status(500).json({ message: error.message });
     }
@@ -33,7 +33,7 @@ export const getPostById = async (req: Request, res: Response) => {
             ],
         });
         if (posts) {
-            res.json(posts)
+            res.json(posts);
         } else {
             res.status(404).json({ message: 'Post not found'})
         }

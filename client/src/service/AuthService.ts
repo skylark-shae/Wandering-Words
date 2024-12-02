@@ -26,10 +26,9 @@ const getToken = () => {
 
 const getTokenData = () => {
   const token = getToken();
-  if (token === null) {
+  if (!token) {
     return;
   }
-  console.log(token);
 
   const payload = token.split(".")[1];
   console.log(payload);

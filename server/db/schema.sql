@@ -14,6 +14,13 @@ CREATE TABLE users (
     password_hash TEXT NOT NULL
 );
 
+CREATE TABLE user_tokens(
+        id SERIAL PRIMARY KEY, 
+        user_id INT REFERENCES users(id),
+        token TEXT NOT NULL,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
 CREATE TABLE user_posts (
     id SERIAL PRIMARY KEY,
     title VARCHAR(255) NOT NULL, 
@@ -24,8 +31,9 @@ CREATE TABLE user_posts (
 
 CREATE TABLE ai_posts (
     id SERIAL PRIMARY KEY,
-    post_id INT REFERENCES user_posts(id), 
-    user_id VARCHAR (50) NOT NULL UNIQUE,
+    title VARCHAR(255) NOT NULL, 
+    content TEXT NOT NULL, 
+    user_id INT REFERENCES users(id), 
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
