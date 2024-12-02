@@ -1,13 +1,18 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { ILoginModel } from "../../model/Auth";
-import { getTokenData, login, setToken } from "../../service/AuthService";
-import "./Login.css";
-import { getUser } from "../../service/UserService";
 import { getActiveUser, updateActiveUser } from "../../LocalStorage";
+import "./Login.css";
+import { getTokenData, login, setToken } from "../../service/AuthService";
+import { getUser } from "../../service/UserService";
+
+interface ILoginModel {
+  username: string;
+  password: string;
+}
 
 const Login = () => {
   const [data, setData] = useState<ILoginModel>({ username: "", password: "" });
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -29,7 +34,7 @@ const Login = () => {
     event.preventDefault();
 
     if (data.username === "" || data.password === "") {
-      alert("Please fill out the form completely.");
+      alert("Please fill out the form.");
     }
 
     try {
