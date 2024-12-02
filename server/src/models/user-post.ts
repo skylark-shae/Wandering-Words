@@ -5,6 +5,7 @@ import User from './user.js';
 class UserPost extends Model {
   public id!: number;
   public title!: string;
+  public subheading!: string;
   public content!: string;
   public user_id!: number;
   public created_at!: Date;
@@ -18,6 +19,10 @@ UserPost.init(
       primaryKey: true,
     },
     title: {
+      type: DataTypes.STRING(255),
+      allowNull: false,
+    },
+    subheading: {
       type: DataTypes.STRING(255),
       allowNull: false,
     },

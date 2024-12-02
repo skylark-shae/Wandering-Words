@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom'; // If using React Router for navigation
 import { createAIPost, generateAiBlogPost } from '../../service/AIPostService';
 import { getActiveUser } from '../../LocalStorage';
+import Navbar from '../Navbar/Navbar';
 
 const NewAIPostPage: React.FC = () => {
   const [title, setTitle] = useState('');
@@ -43,6 +44,8 @@ const NewAIPostPage: React.FC = () => {
   }
 
   return (
+    <>
+    <Navbar />
     <div className="new-post-container">
     
     <h2>Create a New Blog Post</h2>
@@ -96,6 +99,7 @@ const NewAIPostPage: React.FC = () => {
         <button type="submit">Save Post</button>
       </form>
     </div>
+    </>
   );
 };
 

@@ -24,6 +24,7 @@ CREATE TABLE user_tokens(
 CREATE TABLE user_posts (
     id SERIAL PRIMARY KEY,
     title VARCHAR(255) NOT NULL, 
+    subheading VARCHAR(255) NOT NULL, 
     content TEXT NOT NULL, 
     user_id INT REFERENCES users(id), 
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
@@ -32,6 +33,7 @@ CREATE TABLE user_posts (
 CREATE TABLE ai_posts (
     id SERIAL PRIMARY KEY,
     title VARCHAR(255) NOT NULL, 
+    subheading VARCHAR(255) NOT NULL, 
     content TEXT NOT NULL, 
     user_id INT REFERENCES users(id), 
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP

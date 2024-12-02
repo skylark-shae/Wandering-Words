@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
-import { getPostById } from "../../service/PostService";
+import { getAiPostById } from "../../service/AIPostService";
+import Navbar from "../Navbar/Navbar";
 
 const AIArticle = () => {
     const [post, setPost] = useState<any>({
@@ -14,7 +15,7 @@ const AIArticle = () => {
         const fetchPost = async () => {
             console.log(id)
             if (id) {
-                const {data} = await getPostById(id);
+                const {data} = await getAiPostById(id);
                 console.log(data)
                 setPost(data)
             }
@@ -24,10 +25,13 @@ const AIArticle = () => {
 
     return (
         <>
-            <div>
-                <h1>{post.title}</h1>
-                <h3>{post.subheading}</h3>
-                <p>{post.content}</p>
+        <Navbar />
+            <div className="article-container">
+                <div className="article">
+                    <h1>{post.title}</h1>
+                    <h3>{post.subheading}</h3>
+                    <p>{post.content}</p>
+                </div>
             </div>
         </>
     )

@@ -1,29 +1,29 @@
-import { useState, useEffect } from "react";
-import { retrieveFeedbacks } from "../api/feedbackAPI.tsx";
-import type { FeedbackData } from "../interfaces/FeedbackData";
-import FeedbackList from "../components/ContactForm.tsx"
-import FeedbackForm from "../components/FeedbackForm.tsx";
+// import { useState, useEffect } from "react";
+// import { retrieveFeedbacks } from "../api/feedbackAPI.tsx";
+// import type { FeedbackData } from "../interfaces/FeedbackData";
+// import FeedbackList from "../components/ContactForm.tsx"
+// import FeedbackForm from "../components/FeedbackForm.tsx";
 
-const Feedback = () => {
+// const Feedback = () => {
 
-    const [feedbacks, setFeedbacks] = useState<FeedbackData[]>([]);
+//     const [feedbacks, setFeedbacks] = useState<FeedbackData[]>([]);
 
-    useEffect(() => {
-        fetchFeedbacks();
-    }, []);
+//     useEffect(() => {
+//         fetchFeedbacks();
+//     }, []);
 
-    const fetchFeedbacks = async () => {
-        const data = await retrieveFeedbacks();
-        setFeedbacks(data);
-    }
+//     const fetchFeedbacks = async () => {
+//         const data = await retrieveFeedbacks();
+//         setFeedbacks(data);
+//     }
 
-    return (
-        <>
-        <FeedbackForm />
-        <FeedbackList feedbacks={feedbacks} />
-        </>
+//     return (
+//         <>
+//         <FeedbackForm />
+//         <FeedbackList feedbacks={feedbacks} />
+//         </>
         
-    );
-};
+//     );
+// };
 
-export default Feedback;
+// export default Feedback;

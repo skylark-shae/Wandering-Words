@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'; // If using React Router for nav
 import './NewPage.css';
 import { createPost } from '../service/PostService';
 import { getActiveUser } from '../LocalStorage';
+import Navbar from '../components/Navbar/Navbar';
 
 const NewPostPage: React.FC = () => {
   const [title, setTitle] = useState('');
@@ -33,6 +34,8 @@ const NewPostPage: React.FC = () => {
   };
 
   return (
+    <>
+    <Navbar />
     <div className="new-post-container">
       <h2>Create a New Blog Post</h2>
       {error && <p className="error-message">{error}</p>}
@@ -48,7 +51,7 @@ const NewPostPage: React.FC = () => {
         </div>
 
         <div className="form-group">
-          <label>Author:</label>
+          <label>Subheading:</label>
           <input
             type="text"
             value={subheading}
@@ -71,6 +74,7 @@ const NewPostPage: React.FC = () => {
         <button type="submit">Create Post</button>
       </form>
     </div>
+    </>
   );
 };
 

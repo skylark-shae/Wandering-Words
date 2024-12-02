@@ -1,127 +1,85 @@
 import "./Navbar.css";
 import {
   BiHome,
+  BiLogOut,
   BiUser,
-  BiCodeCurly,
-  BiSolidBook,
-  BiMessageSquareDetail,
 } from "react-icons/bi";
+// import { RiServiceLine } from "react-icons/ri";
+import { Link as ScrollLink } from "react-scroll";
+import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { deleteActiveUser, getActiveUser } from "../../LocalStorage";
 import { RiServiceLine } from "react-icons/ri";
-import { Link } from "react-scroll";
-// import { Link } from 'react-router-dom'; // From original code.
+import { setToken } from "../../service/AuthService";
 
 function Navbar() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false); // Local authentication state
+  const navigate = useNavigate(); // Hook for navigation
+
+  // Function to handle logout
+  const handleLogout = () => {
+    setIsLoggedIn(false); // Update auth state to logged out
+    deleteActiveUser();
+    setToken("")
+    console.log("User logged out"); // For debugging
+    navigate("/login"); // Redirect to login page
+  };
+  
+  useEffect(() => {
+    const currentActiveUser = getActiveUser();
+
+    if (currentActiveUser) {
+      setIsLoggedIn(true)
+    } else {
+      setIsLoggedIn(false);
+    }
+  }, [])
+
   return (
+    <>  
     <nav className="navbar">
       <div className="navbar__container">
         <ul className="navbar__menu">
-          <li>
-            <Link
-              to="home"
-              smooth={true}
-              duration={500}
-              spy={true}
-              exact="true"
-              offset={-80}
-              className="navbar__logo"
-            >
-              <BiHome className="navbar__icon" />
-              Home
-            </Link>
-          </li>
+
+
           <li className="navbar__item">
-            <Link
-              to="about"
-              smooth={true}
-              duration={500}
-              spy={true}
-              exact="true"
-              offset={-80}
-              className="navbar__links"
+            <button
+              className="navbar__button"
+              onClick={() => navigate("/new-post")} // Navigate to new user post page
             >
               <BiUser className="navbar__icon" />
-              About
-            </Link>
-          </li>
-          <li className="navbar__item">
-            <Link
-              to="services"
-              smooth={true}
-              duration={500}
-              spy={true}
-              exact="true"
-              offset={-80}
-              className="navbar__links"
+              {'\u00A0'}+ New Post
+            </button>
+            <button
+              className="navbar__button"
+              onClick={() => navigate("/new-ai-post")} // Navigate to new AI post page
             >
               <RiServiceLine className="navbar__icon" />
-              Services
-            </Link>
+              {'\u00A0'}+ New AI Post
+            </button>
           </li>
-          <li className="navbar__item">
-            <Link
-              to="skills"
-              smooth={true}
-              duration={500}
-              spy={true}
-              exact="true"
-              offset={-80}
-              className="navbar__links"
-            >
-              <BiCodeCurly className="navbar__icon" />
-              Skills
-            </Link>
+
+          <li>
+            <button onClick={() => navigate("/")} className="navbar__logo home">
+              <BiHome className="navbar__icon" />{'\u00A0'}
+              Home
+            </button>
           </li>
-          <li className="navbar__item">
-            <Link
-              to="projects"
-              smooth={true}
-              duration={500}
-              spy={true}
-              exact="true"
-              offset={-80}
-              className="navbar__links"
-            >
-              <BiSolidBook className="navbar__icon" />
-              Projects
-            </Link>
-          </li>
-          <li className="navbar__item">
-            <Link
-              to="contact"
-              smooth={true}
-              duration={500}
-              spy={true}
-              exact="true"
-              offset={-80}
-              className="navbar__links"
-            >
-              <BiMessageSquareDetail className="navbar__icon" />
-              Contact
-            </Link>
-          </li>
+
+
+          {/* Conditional Logout button */}
+          {isLoggedIn && (
+            <li className="navbar__item">
+           <ScrollLink to="#" onClick={handleLogout} className="navbar__logo">
+                <BiLogOut className="navbar__icon" />{'\u00A0'}Logout
+              </ScrollLink>
+            </li>
+          )}
         </ul>
       </div>
     </nav>
+    </>
   );
 }
 
 export default Navbar;
-
-// Original code:
-// const Navbar = () => {
-//   return (
-//     <section className='top'>
-//       <header className='bg-primary text-light mb-4 py-3 flex-row align-center'>
-//         <div className='container flex-row justify-space-between-lg justify-center align-center'>
-//           <h1 className='m-0'>UI/UX Tips</h1>
-//           <p className='m-0'>Get practical advice from other developers.</p>
-//           <Link to='/feedback' className='m-0'>
-//             Submit Feedback
-//           </Link>
-//         </div>
-//       </header>
-//     </section>
-//   );
-// };
-
-// export default Navbar;

@@ -6,10 +6,59 @@
   margin-top: 100px;
 }
 .center-post-list {
-
+ width: 100%;
 }
 
 .home-page {
-  margin-top:150px;
+  margin-top:120px;
+}
+.useless-facts-container {
+  padding: 30px;
+  text-align: center;
+}
+
+.posts-container {
   display: flex;
+  flex-direction: row;
+  align-items: space-around;
+  width: 100%;
+}
+
+.ai-aside-posts {
+  width: 100%;
+}
+
+.card {
+  background-color: #fff;
+  padding: 15px;
+  margin:15px;
+  border-radius: 10px;
+  max-width: 600px;
+  margin: 20px auto;
+}
+
+.card:hover {
+  transition: 0.3s;;
+  background-color:beige;
+  cursor: pointer;
+}
+
+.home-page > h3 {
+  text-align: center;
+}
+
+.center-post-list, .ai-aside-posts > h3 {
+  text-align: center;
+}
+
+
+@media screen and (max-width: 600px) {
+  .home-page {
+    margin-top: 230px;
+  }
+  .posts-container {
+    display: flex;
+    flex-direction: column;
+    padding: 0px 50px;
+  }
 }

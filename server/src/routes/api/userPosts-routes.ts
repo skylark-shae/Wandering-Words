@@ -10,7 +10,7 @@ import auth from '../../middleware/auth.js'
 
 const router = express.Router();
 
-router.get("/", getAllPosts);
+router.get("/", auth, getAllPosts);
 
 router.get("/:id", getPostById);
 

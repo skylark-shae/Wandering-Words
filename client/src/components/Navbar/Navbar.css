@@ -18,7 +18,7 @@
 .navbar__menu {
   display: flex;
   width: 100%;
-  justify-content: center;
+  justify-content: space-between;
 }
 
 .navbar a {
@@ -39,6 +39,14 @@ nav a.active {
   background: var(--color-primary); /* Changed for better visibility */
   color: #fff; /* Ensures visual contrast */
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Subtle highlight */
+}
+
+.home {
+  background-color: grey;
+}
+
+.home:hover {
+  background-color: rgb(80, 79, 79);
 }
 
 /* Extra small @media */

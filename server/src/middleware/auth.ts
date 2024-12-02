@@ -12,6 +12,6 @@ export default (req: Request, res: Response, next: NextFunction): any => {
       next()
     } catch (e) {
       console.error(e);
-      return res.status(500).send({ message: "Token Invalid" });
+      return res.status(401).send({ message: "Token Invalid" });
     }
 };
