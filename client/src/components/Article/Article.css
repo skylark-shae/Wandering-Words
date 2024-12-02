@@ -1,0 +1,24 @@
+.article-container {
+    /* margin-top: 80px; */
+    margin: 150px auto;    
+}
+
+.article {
+    width: 50%;
+    margin: auto;
+}
+
+.article > h3 {
+    margin-bottom: 20px;
+}
+
+@media screen and (max-width: 600px) {
+    .article {
+        width: 80%;
+        margin: auto;
+    }
+
+    .article-container {
+        margin-top:230px;
+    }
+  }

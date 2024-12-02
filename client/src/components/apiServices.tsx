@@ -1,9 +1,9 @@
-import { createPost, updatePost, deletePost } from '../api/apiSevices';
+import { createPost, deletePost, updatePost } from "../service/PostService";
 
 // Example: Create a new post
-const handleCreatePost = async () => {
+export const handleCreatePost = async () => {
   try {
-    const newPost = await createPost({ title: 'My Post', content: 'Hello, world!', author: 'John' });
+    const newPost = await createPost({ title: 'My Post', content: 'Hello, world!', subheading: 'John' });
     console.log('Post created:', newPost);
   } catch (error) {
     console.error(error);
@@ -11,7 +11,7 @@ const handleCreatePost = async () => {
 };
 
 // Example: Update a post
-const handleUpdatePost = async (postId: string) => {
+export const handleUpdatePost = async (postId: string) => {
   try {
     const updatedPost = await updatePost(postId, { title: 'Updated Title', content: 'Updated content' });
     console.log('Post updated:', updatedPost);
@@ -21,7 +21,7 @@ const handleUpdatePost = async (postId: string) => {
 };
 
 // Example: Delete a post
-const handleDeletePost = async (postId: string) => {
+export const handleDeletePost = async (postId: string) => {
   try {
     await deletePost(postId);
     console.log('Post deleted');

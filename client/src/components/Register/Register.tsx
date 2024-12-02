@@ -23,6 +23,7 @@ const Register = () => {
       navigate("/")
     }
   }, [])
+  
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const id = event.target.id;
     const value = event.target.value;
@@ -60,7 +61,8 @@ const Register = () => {
       return;
     }
     //          save new user in local storage
-    addNewUser(data);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    addNewUser(data as any);
     setMessage("User created please click the link to");
     setData({
       email: "",
@@ -73,6 +75,8 @@ const Register = () => {
 
   return (
     <>
+    <div className="login-page">
+
       <div className="background">
         <div className="shape"></div>
         <div className="shape"></div>
@@ -112,6 +116,7 @@ const Register = () => {
         <Link to="/Login">Login</Link>
         {/* TODO: add a hover effect to make the text larger. also add an underline to the link, to help others realize it is a link */}
       </form>
+    </div>
     </>
   );
 };

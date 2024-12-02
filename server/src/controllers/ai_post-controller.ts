@@ -34,8 +34,8 @@ export const createNewAiPost = async (req: Request, res: Response) => {
         const newPost = await AiPost.create({ title, subheading, content, user_id });
         res.status(201).json(newPost);
     } catch (error: any) {
+        console.log(error)
         res.status(400).json({ message: error.message });
-        
     }
 
 };
