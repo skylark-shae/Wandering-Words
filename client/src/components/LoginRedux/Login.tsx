@@ -35,7 +35,6 @@ const Login = () => {
     try {
       const result = await login(data);
       if (result.status === 200) {
-        console.log(result, "hi");
         setToken(result.data.accessToken);
         const tokenData = getTokenData();
 
