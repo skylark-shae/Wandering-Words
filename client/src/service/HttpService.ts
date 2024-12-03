@@ -2,7 +2,8 @@ import { deleteActiveUser } from "../LocalStorage";
 import { getToken, setToken } from "./AuthService";
 import axios from "axios";
 
-axios.defaults.baseURL = "https://wandering-words-j2hr.onrender.com/api";
+axios.defaults.baseURL = import.meta.env.VITE_URL;
+console.log(import.meta.env.VITE_URL);
 
 axios.interceptors.request.use((config) => {
   const token = getToken();

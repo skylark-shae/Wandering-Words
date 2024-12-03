@@ -1,5 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { addNewUser, getActiveUser, isUserAlreadyRegistered } from "../../LocalStorage";
+import {
+  addNewUser,
+  getActiveUser,
+  isUserAlreadyRegistered,
+} from "../../LocalStorage";
 import { Link, useNavigate } from "react-router-dom";
 import { IUserModel } from "../../model/Auth";
 import { registerUser } from "../../service/AuthService";
@@ -20,10 +24,10 @@ const Register = () => {
     const activeUser = getActiveUser();
 
     if (activeUser) {
-      navigate("/")
+      navigate("/");
     }
-  }, [])
-  
+  }, []);
+
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const id = event.target.id;
     const value = event.target.value;
@@ -42,7 +46,7 @@ const Register = () => {
 
     try {
       const result = await registerUser(data);
-      if (result.status === 201) {
+      if (result.status === 200) {
         setData(defaultData);
         setMessage("User registered, Click on login.");
       } else {
@@ -51,7 +55,7 @@ const Register = () => {
       console.log(result);
     } catch (error) {
       console.log(error);
-      // alert(`Error`); we do not need this extra aleart
+      // alert(`Error`); we do not need this extra alert
     }
     // Call the API, to register new user
 
@@ -75,48 +79,47 @@ const Register = () => {
 
   return (
     <>
-    <div className="login-page">
+      <div className="login-page">
+        <div className="background">
+          <div className="shape"></div>
+          <div className="shape"></div>
+        </div>
+        <form className="register-form" onSubmit={handleFormSubmit}>
+          <h3>Sign Up Now!</h3>
 
-      <div className="background">
-        <div className="shape"></div>
-        <div className="shape"></div>
+          <label htmlFor="email">Email</label>
+          <input
+            type="text"
+            placeholder="Create your email"
+            id="email"
+            value={data.email}
+            onChange={handleInputChange}
+          />
+
+          <label htmlFor="username">Username</label>
+          <input
+            type="text"
+            placeholder="Set your username"
+            id="username"
+            value={data.username}
+            onChange={handleInputChange}
+          />
+
+          <label htmlFor="password">Password</label>
+          <input
+            type="password"
+            placeholder="Create your password"
+            id="password"
+            value={data.password}
+            onChange={handleInputChange}
+          />
+
+          <button className="register-button">Sign Up</button>
+          <div className="social">{message && <p>{message}</p>}</div>
+          <Link to="/Login">Login</Link>
+          {/* TODO: add a hover effect to make the text larger. also add an underline to the link, to help others realize it is a link */}
+        </form>
       </div>
-      <form className="register-form" onSubmit={handleFormSubmit}>
-        <h3>Sign Up Now!</h3>
-
-        <label htmlFor="email">Email</label>
-        <input
-          type="text"
-          placeholder="Create your email"
-          id="email"
-          value={data.email}
-          onChange={handleInputChange}
-        />
-
-        <label htmlFor="username">Username</label>
-        <input
-          type="text"
-          placeholder="Set your username"
-          id="username"
-          value={data.username}
-          onChange={handleInputChange}
-        />
-
-        <label htmlFor="password">Password</label>
-        <input
-          type="password"
-          placeholder="Create your password"
-          id="password"
-          value={data.password}
-          onChange={handleInputChange}
-        />
-
-        <button className="register-button">Sign Up</button>
-        <div className="social">{message && <p>{message}</p>}</div>
-        <Link to="/Login">Login</Link>
-        {/* TODO: add a hover effect to make the text larger. also add an underline to the link, to help others realize it is a link */}
-      </form>
-    </div>
     </>
   );
 };

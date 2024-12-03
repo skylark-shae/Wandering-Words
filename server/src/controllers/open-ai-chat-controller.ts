@@ -1,6 +1,6 @@
-import type { Request, Response } from 'express';
-import chatGptService from '../services/chatgpt.service.js';
-import { systemPrompt } from '../utils/system-contant.js';
+import type { Request, Response } from "express";
+import chatGptService from "../services/chatgpt.service.js";
+import { systemPrompt } from "../utils/system-contant.js";
 
 // post request to /api/chat
 export const chat = async (req: Request, res: Response) => {
