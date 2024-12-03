@@ -1,5 +1,5 @@
 <a id="title"></a>
-# Wandering Words
+# [Wandering Words](https://wandering-words-j2hr.onrender.com/)
 
 ## Table of Contents
 - [Title](#title)
@@ -19,6 +19,8 @@
 <a id="description"></a>
 ## Description
 An intelligent blog platform leveraging AI to assist users in creating and editing blog posts. This project integrates a grammar-checking API and OpenAI's content generation capabilities to enhance the blogging experience.
+
+[Link](https://wandering-words-j2hr.onrender.com/)
 
 
 **Features**
@@ -173,8 +175,6 @@ Ricardo Shade
 
 <a id="development"></a>
 ## Future Development
-
-[Google Doc](https://docs.google.com/document/d/1ol6ijrawWwCEvmWFz3Pm9QBDXgyqPqCGQ61TIVFbjxM/edit?tab=t.0)
 
 <a id="contributing"></a>
 ## Contributing
