@@ -2,7 +2,7 @@ import { deleteActiveUser } from "../LocalStorage";
 import { getToken, setToken } from "./AuthService";
 import axios from "axios";
 
-axios.defaults.baseURL = "http://localhost:4200/api";
+axios.defaults.baseURL = "https://wandering-words-j2hr.onrender.com/api";
 
 axios.interceptors.request.use((config) => {
   const token = getToken();
@@ -23,9 +23,8 @@ axios.interceptors.response.use(
       //localStorage.removeItem("persist:root");
       //removeLocalStorageToken
       window.location.href = "/login";
-      setToken('')
+      setToken("");
       deleteActiveUser();
-      
     }
     return Promise.reject(error);
   }
